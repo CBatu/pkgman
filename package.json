@@ -1,0 +1,9 @@
+{
+    "packages": {
+      "glfw": {
+        "3.4": {
+          "macos": "glfw-3.4.bin.MACOS"
+        }
+    }
+  }
+}
