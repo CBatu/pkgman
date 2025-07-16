@@ -2,6 +2,9 @@
 
 set -e
 
+# install.sh'nin kendi dizini (betiğin bulunduğu dizin)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 TARGET_DIR="vendor"
 ARCH=$(uname -m)
 
@@ -10,7 +13,7 @@ echo "[INFO] Detected architecture: $ARCH"
 
 # 1. Include dosyaları
 mkdir -p "$TARGET_DIR/include/GLFW"
-cp -r include/GLFW/* "$TARGET_DIR/include/GLFW/"
+cp -r "$SCRIPT_DIR/include/GLFW/"* "$TARGET_DIR/include/GLFW/"
 
 # 2. Mimariye göre lib klasörü seç
 case "$ARCH" in
@@ -28,6 +31,6 @@ esac
 
 # 3. Lib dosyaları
 mkdir -p "$TARGET_DIR/lib"
-cp -r "$LIBDIR/"* "$TARGET_DIR/lib/"
+cp -r "$SCRIPT_DIR/$LIBDIR/"* "$TARGET_DIR/lib/"
 
 echo "[SUCCESS] GLFW installed to ./$TARGET_DIR"
